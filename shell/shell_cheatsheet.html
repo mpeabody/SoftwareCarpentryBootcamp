@@ -1,0 +1,356 @@
+<h1 id="basic-shell-commands">Basic Shell Commands</h1>
+<hr />
+<h2 id="shell-basics">1. Shell Basics:</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Command</th>
+<th align="left">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>.</code></td>
+<td align="left">a single period refers to the current directory</td>
+</tr>
+<tr class="even">
+<td align="left"><code>..</code></td>
+<td align="left">a double period refers to the directory immediately above the current directory</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>~</code></td>
+<td align="left">refers to your home directory. <em>Note:</em> this command does NOT work on Windows machines (Mac and Linux are okay)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>cd ./dirname</code></td>
+<td align="left">changes the current directory to the directory <code>dirname</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ls -F</code></td>
+<td align="left">tells you what files and directories are in the current directory</td>
+</tr>
+<tr class="even">
+<td align="left"><code>pwd</code></td>
+<td align="left">tells you what directory you are in (<code>pwd</code> stands for <em>p</em>rint <em>w</em>orking <em>d</em>irectory)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>history</code></td>
+<td align="left">lists previous commands you have entered. <code>history | less</code> lets you page through the list.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>man</code> <em>cmd</em></td>
+<td align="left">displays the <em>man</em>ual page for a command.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="creating-things">2. Creating Things:</h2>
+<h3 id="a-how-to-create-new-files-and-directories..">a) How to create new files and directories..</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Command</th>
+<th align="left">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>mkdir ./dirname</code></td>
+<td align="left">makes a new directory called dirname below the current directory. <em>Note:</em> Windows users will need to use <code>\</code> instead of <code>/</code> for the path separator</td>
+</tr>
+<tr class="even">
+<td align="left"><code>nano filename</code></td>
+<td align="left">if <code>filename</code> does not exist, <code>nano</code> creates it and opens the <code>nano</code> text editor. If the file exists, <code>nano</code> opens it. <em>Note:</em> <em>(i)</em> You can use a different text editor if you like. In gnome Linux, <code>gedit</code> works really well too. <em>(ii)</em> <code>nano</code> (or <code>gedit</code>) create text files. It doesn't matter what the file extension is (or if there is one)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b-how-to-delete-files-and-directories...">b) How to delete files and directories...</h3>
+<h4 id="remember-that-deleting-is-forever.-there-is-no-going-back"><em>Remember that deleting is forever. There is NO going back</em></h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Command</th>
+<th align="left">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>rm ./filename</code></td>
+<td align="left">deletes a file called <code>filename</code> from the current directory</td>
+</tr>
+<tr class="even">
+<td align="left"><code>rmdir ./dirname</code></td>
+<td align="left">deletes the directory <code>dirname</code> from the current directory. <em>Note:</em> <code>dirname</code> must be empty for <code>rmdir</code> to run.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="c-how-to-copy-and-rename-files-and-directories...">c) How to copy and rename files and directories...</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Command</th>
+<th align="left">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>mv tmp/filename .</code></td>
+<td align="left">moves the file <code>filename</code> from the directory <code>tmp</code> to the current directory. <em>Note:</em> <em>(i)</em> the original <code>filename</code> in <code>tmp</code> is deleted. <em>(ii)</em> <code>mv</code> can also be used to rename files (e.g., <code>mv filename newname</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>cp tmp/filename .</code></td>
+<td align="left">copies the file <code>filename</code> from the directory <code>tmp</code> to the current directory. <em>Note:</em> <em>(i)</em> the original file is still there</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pipes-and-filters">3. Pipes and Filters</h2>
+<h3 id="a-how-to-use-wildcards-to-match-filenames...">a) How to use wildcards to match filenames...</h3>
+<p>Wildcards are a shell feature that makes the command line much more powerful than any GUI file managers. Wildcards are particularly useful when you are looking for directories, files, or file content that can vary along a given dimension. These wildcards can be used with any command that accepts file names or text strings as arguments.</p>
+<h4 id="table-of-commonly-used-wildcards">Table of commonly used wildcards</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Wildcard</th>
+<th align="left">Matches</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>*</code></td>
+<td align="left">zero or more characters</td>
+</tr>
+<tr class="even">
+<td align="left"><code>?</code></td>
+<td align="left">exactly one character</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[abcde]</code></td>
+<td align="left">exactly one of the characters listed</td>
+</tr>
+<tr class="even">
+<td align="left"><code>[a-e]</code></td>
+<td align="left">exactly one character in the given range</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[!abcde]</code></td>
+<td align="left">any character not listed</td>
+</tr>
+<tr class="even">
+<td align="left"><code>[!a-e]</code></td>
+<td align="left">any character that is not in the given range</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>{software,carpentry}</code></td>
+<td align="left">exactly one entire word from the options given</td>
+</tr>
+</tbody>
+</table>
+<p>See the cheatsheet on regular expressions for more &quot;wildcard&quot; shortcuts.</p>
+<h3 id="b-how-to-redirect-to-a-file-and-get-input-from-a-file-...">b) How to redirect to a file and get input from a file ...</h3>
+<p>Redirection operators can be used to redirect the output from a program from the display screen to a file where it is saved (or many other places too, like your printer or to another program where it can be used as input).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Command</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&gt;</code></td>
+<td align="left">write <code>stdout</code> to a new file; overwrites any file with that name (e.g., <code>ls *.md &gt; mardkownfiles.txt</code>)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>&gt;&gt;</code></td>
+<td align="left">append <code>stdout</code> to a previously existing file; if the file does not exist, it is created (e.g., <code>ls *.md &gt;&gt; markdownfiles.txt</code>)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&lt;</code></td>
+<td align="left">assigns the information in a file to a variable, loop, etc (e.g., <code>n &lt; markdownfiles.md</code>)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="b.1-how-to-use-the-output-of-one-command-as-the-input-to-another-with-a-pipe...">b.1) How to use the output of one command as the input to another with a pipe...</h4>
+<p>A special kind of redirection is called a pipe and is denoted by <code>|</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Command</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">|</td>
+<td align="left">Output from one command line program can be used as input to another one (e.g. ls *.md | head gives you the first 5 <code>*.md</code> files in your directory)</td>
+</tr>
+</tbody>
+</table>
+<h5 id="example">Example:</h5>
+<pre><code>ls *.md | head | sed -i `s/markdown/software/g`</code></pre>
+<p>changes all the instances of the word <code>markdown</code> to <code>software</code> in the first 5 <code>*.md</code> files in your current directory.</p>
+<h2 id="how-to-repeat-operations-using-a-loop...">4. How to repeat operations using a loop...</h2>
+<p>Loops assign a value in a list or counter to a variable that takes on a different value each time through the loop. There are 2 primary kinds of loops: <code>for</code> loops and <code>while</code> loops.</p>
+<h3 id="a-for-loop">a) For loop</h3>
+<p>For loops loop through variables in a list</p>
+<pre><code>for varname in list
+do
+    command1 $varname
+    command2 $varname
+done</code></pre>
+<p>where,</p>
+<ul>
+<li><code>for</code>, <code>in</code>, <code>do</code>, and <code>done</code> are keywords</li>
+<li><code>list</code> contains a list of values separated by spaces. e.g. <code>list</code> can be replaced by <code>1 2 3 4 5 6</code> or by <code>Bob Mary Sue Greg</code>. <code>list</code> can also be a variable:</li>
+<li><code>varname</code> is assigned a value without using a <code>$</code> and the value is retrieved using <code>$varname</code></li>
+</ul>
+<p>--</p>
+<pre><code>list[0]=Sam
+list[1]=Lynne
+list[2]=Dhavide
+list[3]=Trevor
+.
+.
+.
+list[n]=Mark</code></pre>
+<p>which is referenced in the loop by:</p>
+<pre><code>for varname in ${list[@]}
+do
+    command1 $varname
+    command2 $varname
+done</code></pre>
+<p><em>Note:</em> Bash is zero indexed, so counting always starts at <code>0</code>, not <code>1</code>.</p>
+<h3 id="b-while-loop">b) While Loop</h3>
+<p>While loops loop through the commands until a condition is met. For example</p>
+<pre><code>COUNTER=0
+while [ ${COUNTER} -lt 10 ]; do
+    command 1
+    command 2
+    COUNTER=`expr ${COUNTER} + 1` 
+done</code></pre>
+<p>continues the loop as long as the value in the variable COUNTER is less than 10 (incremented by 1 on each iteration of the loop).</p>
+<ul>
+<li><code>while</code>, <code>do</code>, and <code>done</code> are keywords</li>
+</ul>
+<h4 id="b.1-commonly-used-conditional-operators">b.1) Commonly used conditional operators</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Operator</th>
+<th align="left">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>-eq</code></td>
+<td align="left">is equal to</td>
+</tr>
+<tr class="even">
+<td align="left"><code>-ne</code></td>
+<td align="left">is not equal to</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>-gt</code></td>
+<td align="left">greater than</td>
+</tr>
+<tr class="even">
+<td align="left"><code>-ge</code></td>
+<td align="left">greater than or equal to</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>-lt</code></td>
+<td align="left">less than</td>
+</tr>
+<tr class="even">
+<td align="left"><code>-le</code></td>
+<td align="left">less than or equal to</td>
+</tr>
+</tbody>
+</table>
+<p>Use <code>man bash</code> or <code>man test</code> to learn about other operators you can use.</p>
+<h2 id="finding-things">6. Finding Things</h2>
+<h3 id="a-how-to-select-lines-matching-patterns-in-text-files...">a) How to select lines matching patterns in text files...</h3>
+<p>To find information within files, you use a command called <code>grep</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Example command</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>grep [options] day haiku.txt</code></td>
+<td align="left">finds every instance of the string <code>day</code> in the file haiku.txt and pipes it to standard output</td>
+</tr>
+</tbody>
+</table>
+<h4 id="a.1-commonly-used-grep-options">a.1) Commonly used <code>grep</code> options</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"><code>grep</code> options</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>-E</code></td>
+<td align="left">tells grep you will be using a regular expression. Enclose the regular expression in quotes. <em>Note:</em> the power of <code>grep</code> comes from using regular expressions. Please see the regular expressions sheet for examples</td>
+</tr>
+<tr class="even">
+<td align="left"><code>-i</code></td>
+<td align="left">makes matching case-insensitive</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>-n</code></td>
+<td align="left">limits the number of lines that match to the first n matches</td>
+</tr>
+<tr class="even">
+<td align="left"><code>-v</code></td>
+<td align="left">shows lines that do not match the pattern (inverts the match)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>-w</code></td>
+<td align="left">outputs instances where the pattern is a whole word</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b-how-to-find-files-with-certain-properties...">b) How to find files with certain properties...</h3>
+<p>To find file and directory names, you use a command called <code>find</code></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Example command</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>find . -type d</code></td>
+<td align="left"><code>find</code> recursively descends the directory tree for each path listed to match the expression given in the command line with file or directory names in the search path</td>
+</tr>
+</tbody>
+</table>
+<h4 id="b.1-commonly-used-find-options">b.1) Commonly used <code>find</code> options</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"><code>find</code> options</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>-type [df]</code></td>
+<td align="left"><code>d</code> lists directories; <code>f</code> lists files</td>
+</tr>
+<tr class="even">
+<td align="left"><code>-maxdepth n</code></td>
+<td align="left"><code>find</code> automatically searches subdirectories. If you don't want that, specify the number of levels below the working directory you would like to search</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>-mindepth n</code></td>
+<td align="left">starts <code>find</code>'s search <code>n</code> levels below the working directory</td>
+</tr>
+</tbody>
+</table>

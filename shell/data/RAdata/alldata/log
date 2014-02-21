@@ -1,0 +1,147 @@
+    1  clear
+    2  cd /Volumes/PETITDISQUE/2013-11-23-dlab/
+    3  ls
+    4  git add *
+    5  git commit -m "--" 
+    6  git push origin master
+    7  clear
+    8  cd /Volumes/PETITDISQUE/
+    9  clear
+   10  whoami
+   11  cd 2013-11-23-dlab
+   12  pwd
+   13  ls
+   14  ls -F
+   15  cd shelll
+   16  cd shell/
+   17  ls -F
+   18  ls -G
+   19  ls -F
+   20  touch testfile
+   21  ls
+   22  cat testfile
+   23  nano testfile 
+   24  cat testfile 
+   25  git add testfile 
+   26  git status
+   27  git commit 
+   28  git status 
+   29  git push origin master
+   30  git diff
+   31  git diff testfile 
+   32  git pull
+   33  git config --global user.name "Lynne"
+   34  git config --global user.email "williams.lynne99@gmail.com"
+   35  pwd
+   36  ls
+   37  ls -F
+   38  mkdir temp
+   39  ls -F
+   40  cp testfile temp/
+   41  cd temp
+   42  ls
+   43  cat testfile
+   44  cd ..
+   45  pwd
+   46  rm testfile 
+   47  ls -F
+   48  rmdir temp/
+   49  cd temp/
+   50  rm testfile 
+   51  cd ..
+   52  pwd
+   53  rmdir temp
+   54  ls-F
+   55  ls -F
+   56  cd data/
+   57  pwd
+   58  ls -F
+   59  cd THOMAS/
+   60  ls -F
+   61  cd ../Bert/
+   62  ls
+   63  cat audioresult-00320
+   64  cat audioresult-00320
+   65  pwd
+   66  cd ..
+   67  pwd
+   68  mkdir alldata
+   69  cd alldata/
+   70  cp *
+   71  cp ../THOMAS/* .
+   72  ls -F
+   73  pwd
+   74  cp ../Bert/* .
+   75  pwd
+   76  ls -F
+   77  mv 0513 audioresult-00513
+   78  ls
+   79  mv 0513 audioresult-00513 
+   80  nano rename.sh
+   81  cat *
+   82  pwd nano
+   83  ls
+   84  nano rename.sh
+   85  cd ..
+   86  cd ..
+   87  pwd 
+   88  ls
+   89  cd exercise
+   90  ls
+   91  cat haiku.txt 
+   92  cat haiku.txt | less 
+   93  head haiku.txt 
+   94  head -n 5 haiku.txt 
+   95  clear
+   96  tail 
+   97  tail haiku.txt 
+   98  # Use head, tail and | to get
+   99  # the 10th through the 15th line
+  100  # of haiku.txt
+  101  head -n 15 haiku.txt | tail -n 5
+  102  history 
+  103  cat haiku.txt | less 
+  104  history > log
+  105  ls
+  106  cat log
+  107   rm log
+  108  ls >> log
+  109  cat log
+  110  cd ../data/
+  111  ls
+  112  cd alldata/
+  113  ls
+  114  wc 0514
+  115  wc *
+  116  wc * | head
+  117  ls *a*
+  118  ls a*
+  119  ls a*
+  120  man ls
+  121  clear
+  122  # Use ls and the man page to list the files in alldata
+  123  # in reverse order
+  124  ls -r
+  125  ls -r
+  126  clear
+  127  Take all Thomas' files and send the list
+  128  clear
+  129  # Take the files from Thomas' folder and 
+  130  # redirect them to a file called rename.txt
+  131  ls 0*
+  132  ls 0* > rename.txt
+  133  cat rename.txt
+  134  nano rename.sh
+  135  sh rename.sh
+  136  nano rename.txt 
+  137  nano rename.sh 
+  138  nano rename.sh 
+  139  sh rename.sh
+  140  ls -F
+  141  nano rename.sh 
+  142  git add rename.*
+  143  git commit -m "adding rename files to repo"
+  144  nano rename.sh
+  145  git add rename.sh 
+  146  git commit -m "made rename.sh executable"
+  147  history > log

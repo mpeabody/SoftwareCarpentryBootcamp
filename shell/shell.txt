@@ -1,0 +1,176 @@
+    1  whoami
+    2  pwd
+    3  git clone
+    4  cd /2014-02-22-SFU-python
+    5  ls
+    6  ls -F
+    7  ls -G
+    8  ls -F data
+    9  pwd
+   10  cd data
+   11  pwd
+   12  ls -F
+   13  cd /Volumes/PETITDISQUE/swc/2014-02-22-SFU-python/shell
+   14  pwd
+   15  cd data
+   16  ls
+   17  cd ..
+   18  pwd
+   19  cd data
+   20  ls
+   21  pwd
+   22  ls -F -a
+Challenge filesystems 
+
+
+   23  cd ..
+   24  ls
+   25  mkdir thesis
+   26  ls -F
+   27  cd thesis
+   28  nano draft.txt
+   29  ls
+   30  ls -s
+   31  ls -s -h
+   32  rm draft.txt 
+   33  ls
+   34  nano draft.txt
+   35  pwd
+   36  cd ..
+   37  rm thesis
+   38  rmdir thesis
+   39  rm thesis/draft.txt 
+   40  rmdir thesis
+   41  history
+   42  mkdir thesis
+   43  ls
+   44  nano thesis/draft.txt
+   45  mv thesis/draft.txt thesis/quotes.txt
+   46  ls -F thesis/
+   47  mv thesis/quotes.txt .
+   48  ls
+   49  ls thesis
+   50  cp quotes.txt thesis/quotations.txt
+   51  ls
+   52  ls thesis
+   53  ls quotes.txt thesis/quotations.txt
+   54  pwd
+   55  rm quotes.txt
+   56  ls
+   57  ls quotes.txt thesis/quotations.txt
+Challenges Creating Things   
+
+
+   58  cd ..
+   59  ls
+   60  cd data
+   61  ls
+   
+   79  cd molecules
+   80  ls -F
+   81  wc *.pdb
+   82  wc -l
+   83  wc -l *.pdb
+   84  wc -w *.pdb
+   85  wc -c *.pdb
+   86  wc -l *.pdb > lengths
+   87  ls -F
+   88  ls lengths 
+   89  cat lengths
+   90  sort lengths
+   91  sort lengths > sorted-lengths
+   92  ls
+   93  cat sorted-lengths
+   94  head -1 sorted-lengths
+   95  head -20 sorted-lengths
+   96  sort lengths | head -1
+   97  sort |head -1 < lengths 
+   98  wc -l *.pdb | sort | head -1
+   99  wc -l *.pdb | sort | tail -1
+  100  wc -l *.pdb | sort | tail -2 | head -1
+Challlenges Pipes & Filters
+
+
+  101  cd ..
+  102  ls
+  103  mkdir animals
+  104  ls
+  105  cd animals
+  115  for filename in basilisk.dat unicorn.dat ; do    head -3 $filename; done
+  116  for filename in basilisk.dat unicorn.dat ; do    head -3 $filename; done
+  117  echo hello there
+  118  for filename in *.dat; do   echo $filename;   head -100 $filename | tail -20; done
+  119  for filename in *.dat; do    echo $filename;   mv $filename original-$filename; done
+  120  ls
+  121  mv basilisk.dat original-basilisk.dat 
+  122  for filename in *.dat; do   echo mv $filename original-filename; done
+  123  ls
+  124  for filename in *.dat; do  echo mv $filename original-$filename; done
+  125  # Now for scripts
+  126  nano middle.sh
+  127  for filename in *.dat; do done
+  128  mv original-basilisk.dat basilisk.dat
+  129  mv original-unicorn.dat unicorn.dat
+  130  ls
+  131  cd ../molecules
+  132  ls
+  133  nano middle.sh
+  134  ls middle.sh 
+  135  cat middle.sh 
+  136  bash middle.sh
+  137  nano middle.sh
+  138  cat middle.sh
+  139  bash middle.sh cholesterol.pdb 
+  140  bash middle menthol.pdb 
+  141  bash middle.sh menthol.pdb 
+  142  nano middle.sh
+  143  cat middle.sh
+  144  middle.sh cholesterol -10 -3
+  145  middle.sh cholesterol.pdb -10 -3
+  146  ls middle.sh 
+  147  bash middle.sh cholesterol.pdb -10 -3
+  148  cat
+  149  cat middle.sh 
+  150  cat middle.sh 
+  151  cat middle.sh 
+  152  wc -l *.pdb | sort -n
+  153  nano sorted.sh
+  154  bash sorted.sh vitamin_a.pdb ethylcyclohexane.pdb tuberin.pdb sucrose.pdb lactose.pdb 
+  155  nano sorted.sh 
+  156  cat sorted.sh
+  157  history | tail -4 > newsort.sh
+  158  cat newsort.sh
+  159  history | tail -10
+  160  history | tail -10 | colrm 1 7
+  161  man colrm
+  162  history | tail -10 | colrm 1 7 > newsort.sh
+  163  cat newsort.sh 
+Challenges Loops
+
+  164  # finding things
+  165  cd ..
+  166  ls
+  167  cat haiku.txt
+  168  cat haiku.txt | less
+  169  # grep = "global/regular expression/print"
+  170  grep not haiku.txt 
+  171  grep day haiku.txt 
+  172  grep -w day haiku.txt 
+  173  grep -w not haiku.txt 
+  174  grep -n it haiku.txt 
+  175  grep -n -w  it haiku.txt 
+  176  grep -i -v the haiku.txt 
+  177  man grep
+  178  clear
+  179  pwd
+  180  find . -type d -print
+  181  find . -maxdepth 1  -type f -print
+  182  find . -mindepth 2  -type f -print
+  183  find . -mindepth 2 -type f -print
+  184  find . -empty -print
+  185  find . -name *.txt -print
+  186  find . -name '*.txt' -print
+  187  wc -l $(find . -name '*.txt' -print)
+  188  wc -l $(find . -name '*.txt' -print)| head -10
+  189  grep FE $(find . -name '*.pdb' -print)
+  190  history > shell.txt

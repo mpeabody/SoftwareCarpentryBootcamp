@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<h1 id="challenges">Challenges</h1>
+<h2 id="filesystems">Filesystems</h2>
+<p><img src="img/filesystem-challenge.svg" alt="Filesystem for Challenge Questions" /></p>
+<ol style="list-style-type: decimal">
+<li>If <code>pwd</code> displays <code>/users/thing</code>, what will <code>ls ../backup</code> display?
+<ol style="list-style-type: decimal">
+<li><code>../backup: No such file or directory</code></li>
+<li><code>2012-12-01 2013-01-08 2013-01-27</code></li>
+<li><code>2012-12-01/ 2013-01-08/ 2013-01-27/</code></li>
+<li><code>original pnas_final pnas_sub</code></li>
+</ol></li>
+<li><p>If <code>pwd</code> displays <code>/users/backup</code>, and <code>-r</code> tells <code>ls</code> to display things in reverse order, what command will display:</p>
+<pre><code>pnas-sub/ pnas-final/ original/</code></pre>
+<ol style="list-style-type: decimal">
+<li><code>ls pwd</code></li>
+<li><code>ls -r -F</code></li>
+<li><code>ls -r -F /users/backup</code></li>
+<li>Either #2 or #3 above, but not #1.</li>
+</ol></li>
+<li>What does the command <code>cd</code> without a directory name do?
+<ol style="list-style-type: decimal">
+<li>It has no effect.</li>
+<li>It changes the working directory to <code>/</code>.</li>
+<li>It changes the working directory to the user's home directory.</li>
+<li>It produces an error message.</li>
+</ol></li>
+</ol>
+<h2 id="creating-things">Creating Things</h2>
+<ol style="list-style-type: decimal">
+<li><p>What is the output of the closing <code>ls</code> command in the sequence shown below?</p>
+<pre><code>$ pwd
+/home/thing/data
+$ ls
+proteins.dat
+$ mkdir recombine
+$ mv proteins.dat recombine
+$ cp recombine/proteins.dat ../proteins-saved.dat
+$ ls</code></pre></li>
+<li><p>Suppose that:</p>
+<pre><code>$ ls -F
+analyzed/  fructose.dat    raw/   sucrose.dat</code></pre>
+<p>What command(s) could you run so that the commands below will produce the output shown?</p>
+<pre><code>$ ls
+analyzed   raw
+$ ls analyzed
+fructose.dat    sucrose.dat</code></pre></li>
+<li><p>What does <code>cp</code> do when given several filenames and a directory name, as in:</p>
+<pre><code>$ mkdir backup
+$ cp thesis/citations.txt thesis/quotations.txt backup</code></pre>
+<p>What does <code>cp</code> do when given three or more filenames, as in:</p>
+<pre><code>$ ls -F
+intro.txt    methods.txt    survey.txt
+$ cp intro.txt methods.txt survey.txt</code></pre>
+<p>Why do you think <code>cp</code>'s behavior is different from <code>mv</code>'s?</p></li>
+<li><p>The command <code>ls -R</code> lists the contents of directories recursively, i.e., lists their sub-directories, sub-sub-directories, and so on in alphabetical order at each level. The command <code>ls -t</code> lists things by time of last change, with most recently changed files or directories first. In what order does <code>ls -R -t</code> display things?</p></li>
+</ol>
+<h2 id="pipes-filters">Pipes &amp; Filters</h2>
+<ol style="list-style-type: decimal">
+<li><p>If we run <code>sort</code> on this file:</p>
+<pre><code>10
+2
+19
+22
+6</code></pre>
+<p>the output is:</p>
+<pre><code>10
+19
+2
+22
+6</code></pre>
+<p>If we run <code>sort -n</code> on the same input, we get this instead:</p>
+<pre><code>2
+6
+10
+19
+22</code></pre>
+<p>Explain why <code>-n</code> has this effect.</p></li>
+<li><p>What is the difference between:</p>
+<pre><code>wc -l &lt; mydata.dat</code></pre>
+<p>and:</p>
+<pre><code>wc -l mydata.dat</code></pre></li>
+<li><p>The command <code>uniq</code> removes adjacent duplicated lines from its input. For example, if a file <code>salmon.txt</code> contains:</p>
+<pre><code>coho
+coho
+steelhead
+coho
+steelhead
+steelhead</code></pre>
+<p>then <code>uniq salmon.txt</code> produces:</p>
+<pre><code>coho
+steelhead
+coho
+steelhead</code></pre>
+<p>Why do you think <code>uniq</code> only removes <em>adjacent</em> duplicated lines? (Hint: think about very large data sets.) What other command could you combine with it in a pipe to remove all duplicated lines?</p></li>
+<li><p>A file called <code>animals.txt</code> contains the following data:</p>
+<pre><code>2012-11-05,deer
+2012-11-05,rabbit
+2012-11-05,raccoon
+2012-11-06,rabbit
+2012-11-06,deer
+2012-11-06,fox
+2012-11-07,rabbit
+2012-11-07,bear</code></pre>
+<p>What text passes through each of the pipes and the final redirect in the pipeline below?</p>
+<pre><code>cat animals.txt | head -5 | tail -3 | sort -r &gt; final.txt</code></pre></li>
+<li><p>The command:</p>
+<pre><code>$ cut -d , -f 2 animals.txt</code></pre>
+<p>produces the following output:</p>
+<pre><code>deer
+rabbit
+raccoon
+rabbit
+deer
+fox
+rabbit
+bear</code></pre>
+<p>What other command(s) could be added to this in a pipeline to find out what animals the file contains (without any duplicates in their names)?</p></li>
+</ol>
+<h2 id="loops">Loops</h2>
+<ol style="list-style-type: decimal">
+<li><p>Suppose that <code>ls</code> initially displays:</p>
+<pre><code>fructose.dat    glucose.dat   sucrose.dat</code></pre>
+<p>What is the output of:</p>
+<pre><code>for datafile in *.dat
+do
+    ls *.dat
+done</code></pre></li>
+<li><p>In the same directory, what is the effect of this loop?</p>
+<pre><code>for sugar in *.dat
+do
+    echo $sugar
+    cat $sugar &gt; xylose.dat
+done</code></pre>
+<ol style="list-style-type: decimal">
+<li>Prints <code>fructose.dat</code>, <code>glucose.dat</code>, and <code>sucrose.dat</code>, and copies <code>sucrose.dat</code> to create <code>xylose.dat</code>.</li>
+<li>Prints <code>fructose.dat</code>, <code>glucose.dat</code>, and <code>sucrose.dat</code>, and concatenates all three files to create <code>xylose.dat</code>.</li>
+<li>Prints <code>fructose.dat</code>, <code>glucose.dat</code>, <code>sucrose.dat</code>, and <code>xylose.dat</code>, and copies <code>sucrose.dat</code> to create <code>xylose.dat</code>.</li>
+<li>None of the above.</li>
+</ol></li>
+<li><p>The <code>expr</code> does simple arithmetic using command-line parameters:</p>
+<pre><code>$ expr 3 + 5
+8
+$ expr 30 / 5 - 2
+4</code></pre>
+<p>Given this, what is the output of:</p>
+<pre><code>for left in 2 3
+do
+    for right in $left
+    do
+        expr $left + $right
+    done
+done</code></pre></li>
+<li><p>Describe in words what the following loop does.</p>
+<pre><code>for how in frog11 prcb redig
+do
+    $how -limit 0.01 NENE01729B.txt
+done</code></pre></li>
+</ol>
+<h2 id="scripting">Scripting</h2>
+<ol style="list-style-type: decimal">
+<li><p>Leah has several hundred data files, each of which is formatted like this:</p>
+<pre><code>2013-11-05,deer,5
+2013-11-05,rabbit,22
+2013-11-05,raccoon,7
+2013-11-06,rabbit,19
+2013-11-06,deer,2
+2013-11-06,fox,1
+2013-11-07,rabbit,18
+2013-11-07,bear,1</code></pre>
+<p>Write a shell script called <code>species.sh</code> that takes any number of filenames as command-line parameters, and uses <code>cut</code>, <code>sort</code>, and <code>uniq</code> to print a list of the unique species appearing in each of those files separately.</p></li>
+<li><p>Write a shell script called <code>longest.sh</code> that takes the name of a directory and a filename extension as its parameters, and prints out the name of the most recently modified file in that directory with that extension. For example:</p>
+<pre><code>$ bash largest.sh /tmp/data pdb</code></pre>
+<p>would print the name of the <code>.pdb</code> file in <code>/tmp/data</code> that has been changed most recently.</p></li>
+<li><p>If you run the command:</p>
+<pre><code>history | tail -5 &gt; recent.sh</code></pre>
+<p>the last command in the file is the <code>history</code> command itself, i.e., the shell has added <code>history</code> to the command log before actually running it. In fact, the shell <em>always</em> adds commands to the log before running them. Why do you think it does this?</p></li>
+<li><p>Joel's <code>data</code> directory contains three files: <code>fructose.dat</code>, <code>glucose.dat</code>, and <code>sucrose.dat</code>. Explain what a script called <code>example.sh</code> would when run as <code>bash example.sh *.dat</code> if it contained the following lines:</p></li>
+</ol>
+<table>
+  <tr>
+    <td valign="top">
+1.
+</td>
+    <td valign="top">
+<pre>
+echo *.*
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+2.
+</td>
+    <td valign="top">
+<pre>
+for filename in $1 $2 $3
+do
+    cat $filename
+done
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+3.
+</td>
+    <td valign="top">
+<pre>
+echo $*.dat
+</pre>
+    </td>
+  </tr>
+</table>
+
+<h2 id="finding-things">Finding Things</h2>
+<ol style="list-style-type: decimal">
+<li><p>Write a short explanatory comment for the following shell script:</p>
+<pre><code>find . -name &#39;*.dat&#39; -print | wc -l | sort -n</code></pre></li>
+<li><p>The <code>-v</code> flag to <code>grep</code> inverts pattern matching, so that only lines which do <em>not</em> match the pattern are printed. Given that, which of the following commands will find all files in <code>/data</code> whose names end in <code>ose.dat</code> (e.g., <code>sucrose.dat</code> or <code>maltose.dat</code>), but do <em>not</em> contain the word <code>temp</code>?</p>
+<ol style="list-style-type: decimal">
+<li><p><code>find /data -name '*.dat' -print | grep ose | grep -v temp</code></p></li>
+<li><p><code>find /data -name ose.dat -print | grep -v temp</code></p></li>
+<li><p><code>grep -v temp $(find /data -name '*ose.dat' -print)</code></p></li>
+<li><p>None of the above.</p></li>
+</ol></li>
+</ol>
+</body>
+</html>
